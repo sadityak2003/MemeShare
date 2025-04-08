@@ -81,12 +81,12 @@ export default function Navbar() {
     { name: "Upload", path: "/upload", requiresAuth: true },
     { name: "My Memes", path: "/my-memes", requiresAuth: true },
   ];
-
+ // bg-[#1e2433]
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-50 bg-[#1e2433] backdrop-blur-md border-b border-[#8b5cf6]/20 shadow-md"
+      className="sticky top-0 z-50 bg-white backdrop-blur-md border-b border-[#8b5cf6]/20 shadow-md"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
@@ -112,32 +112,32 @@ export default function Navbar() {
                     stiffness: 350,
                     damping: 25,
                   }}
-                  className="absolute left-0 mt-20  h-150 w-60 bg-[#1e2433] rounded-lg shadow-lg py-1 border border-[#8b5cf6]/20 z-50"
+                  className="absolute left-0 mt-20  h-150 w-60 bg-white rounded-lg shadow-lg py-1 border border-[#8b5cf6]/20 z-50"
                 >
                   <div className="flex items-center px-4 py-3 space-x-3 border-b border-[#8b5cf6]/10">
-                    <p className="text-xl font-medium text-white truncate">
+                    <p className="text-xl font-medium text-gray-500 truncate">
                       Library
                     </p>
                   </div>
 
                   <ul className="mt-2 space-y-2">
-                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
+                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
                   <SaveIcon size={18} />
                   <Link href="/your-memes">Saved Memes</Link>
                 </li>
-                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
+                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
                   <Star size={18} />
                   <Link href="/upload">Favourites</Link>
                 </li>
-                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
+                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
                   <ThumbsUp size={18} />
                   <Link href="/upload">Liked</Link>
                 </li>
-                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
+                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
                   <ChartBar size={18} />
                   <Link href="/upload">Your Comments</Link>
                 </li>
-                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
+                <li className="flex items-center space-x-2 px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]">
                   <GiArtificialHive size={18}/>
                   <Link href="/upload">AI Generated Memes</Link>
                 </li>
@@ -168,7 +168,7 @@ export default function Navbar() {
                     className={`inline-flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                       pathname === item.path
                         ? "bg-[#8b5cf6]/20 text-[#a78bfa]"
-                        : "text-gray-300 hover:text-[#a78bfa] hover:bg-[#8b5cf6]/10"
+                        : "text-gray-500 hover:text-[#a78bfa] hover:bg-[#8b5cf6]/10"
                     }`}
                   >
                     {item.name}
@@ -187,7 +187,7 @@ export default function Navbar() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                  className="flex items-center space-x-3 px-3 py-1.5 rounded-lg hover:bg-[#232a39] border border-[#8b5cf6]/10 transition-all duration-200"
+                  className="flex items-center space-x-3 px-3 py-1.5 rounded-lg  hover:bg-[#8b5cf6]/10 border border-[#8b5cf6] transition-all duration-200"
                 >
                   <div className="flex items-center space-x-2">
                     <div className="relative">
@@ -198,13 +198,13 @@ export default function Navbar() {
                       />
                       <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#171b23]"></div>
                     </div>
-                    <span className="hidden sm:inline text-sm font-medium text-white">
+                    <span className="hidden sm:inline text-sm font-medium text-gray-500">
                       {user.displayName?.split(" ")[0] || "User"}
                     </span>
                   </div>
                   <motion.svg
                     animate={{ rotate: profileMenuOpen ? 180 : 0 }}
-                    className="w-4 h-4 text-gray-300 hidden sm:block"
+                    className="w-4 h-4 text-gray-500 hidden sm:block"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -230,7 +230,7 @@ export default function Navbar() {
                         stiffness: 350,
                         damping: 25,
                       }}
-                      className="absolute right-0 mt-2 w-60 bg-[#1e2433] rounded-lg shadow-lg py-1 border border-[#8b5cf6]/20 z-50"
+                      className="absolute right-0 mt-2 w-60 bg-white rounded-lg shadow-lg py-1 border border-[#8b5cf6]/20 z-50"
                     >
                       <div className="flex items-center px-4 py-3 space-x-3 border-b border-[#8b5cf6]/10">
                         <img
@@ -238,7 +238,7 @@ export default function Navbar() {
                           className="w-10 h-10 rounded-full"
                         />
                         <div>
-                          <p className="text-sm font-medium text-white truncate">
+                          <p className="text-sm font-medium text-gray-500 truncate">
                             {user.displayName}
                           </p>
                           <p className="text-xs text-gray-400 truncate mt-1">
@@ -250,7 +250,7 @@ export default function Navbar() {
                       <Link
                         href="/my-memes"
                         onClick={() => setProfileMenuOpen(false)}
-                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]"
                       >
                         My Memes
                       </Link>
@@ -258,7 +258,7 @@ export default function Navbar() {
                       <Link
                         href="/upload"
                         onClick={() => setProfileMenuOpen(false)}
-                        className="block px-4 py-2 text-sm text-gray-300 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]"
+                        className="block px-4 py-2 text-sm text-gray-500 hover:bg-[#8b5cf6]/10 hover:text-[#a78bfa]"
                       >
                         Upload Meme
                       </Link>

@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useAuth } from "./context/AuthContext";
 import MemeCard from "./components/MemeCard";
 import { motion } from "framer-motion";
+import Particles from "react-tsparticles";
+import { loadSlim } from "tsparticles-slim";
 
 interface Meme {
   id: string;
@@ -56,14 +58,17 @@ export default function ExplorePage() {
     }
   };
 
-  // Handler for meme deletion
   const handleMemeDelete = (deletedId: string) => {
     setMemes((currentMemes) => currentMemes.filter((meme) => meme.id !== deletedId));
   };
 
+  const particlesInit = useCallback(async (engine: any) => {
+    await loadSlim(engine);
+  }, []);
+
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#171b23]">
+      <div className="min-h-screen flex items-center justify-center bg-white">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -77,9 +82,26 @@ export default function ExplorePage() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-[#171b23]"
+      className="relative min-h-screen bg-[#ffffff] overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto py-4 sm:py-8 px-3 sm:px-6 lg:px-8">
+    
+      <Particles
+        className="absolute inset-0 z-0"
+        init={particlesInit}
+        options={{
+          background: { color: "transparent" },
+          particles: {
+            number: { value: 80, density: { enable: true, area: 800 } },
+            move: { enable: true, speed: 1.5 },
+            shape: { type: "circle" },
+            size: { value: { min: 2, max: 4 } },
+            opacity: { value: 0.4 },
+            color: { value: ["#8b5cf6", "#a78bfa", "#c084fc"] },
+          },
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto py-4 sm:py-8 px-3 sm:px-6 lg:px-8 z-10">
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -88,7 +110,7 @@ export default function ExplorePage() {
           <h1 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-[#8b5cf6] via-[#a78bfa] to-[#f472b6] text-transparent bg-clip-text">
             Explore Memes
           </h1>
-          <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-300">
+          <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-400">
             Discover the latest memes from the community
           </p>
         </motion.div>
@@ -97,12 +119,12 @@ export default function ExplorePage() {
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="bg-[#1e2433] p-4 sm:p-6 rounded-xl shadow-lg mb-6 sm:mb-8 border border-[#8b5cf6]/20"
+            className="bg-[#f3f6fc] p-4 sm:p-6 rounded-xl shadow-lg mb-6 sm:mb-8 border border-[#8b5cf6]/20"
           >
             <h2 className="text-xl sm:text-2xl font-semibold mb-2 text-[#a78bfa]">
               Welcome to MemeShare!
             </h2>
-            <p className="text-sm sm:text-base text-gray-300">
+            <p className="text-sm sm:text-base text-gray-500">
               Sign in to like, comment, and upload your own memes.
             </p>
           </motion.div>

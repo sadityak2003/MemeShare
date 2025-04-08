@@ -136,8 +136,6 @@ export default function MemeCard({
     setLocalComments(newComments);
   };
 
-  const imageURL =
-    "https://img.freepik.com/premium-vector/vector-colorful-logo-design_1002026-45.jpg";
 
   return (
     <>
@@ -145,25 +143,25 @@ export default function MemeCard({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ y: -5 }}
-        className="bg-[#1e2433] rounded-xl overflow-hidden shadow-lg border border-[#8b5cf6]/20 hover:border-[#8b5cf6]/40 transition-all duration-300 flex flex-col h-full"
+        className="bg-white rounded-xl overflow-hidden shadow-lg border border-[#8b5cf6]/20 hover:border-[#8b5cf6]/40 transition-all duration-300 flex flex-col h-full"
       >
         <div
           className="relative group cursor-pointer"
           onClick={openDetailModal}
         >
           {/*Creator Details*/}
-          <div className="p-4 flex items-center gap-5">
+          <div className="p-4 flex items-center gap-2">
             <img src={user?.photoURL || ""} className="w-10 h-10 rounded-full" />
-            <div className="flex items-center justify-evenly">
+            <div className="flex items-center">
               <Link
                 href={`/profile/${authorId}`}
-                className="flex items-center space-x-1 sm:space-x-2 hover:text-[#a78bfa] transition-colors"
+                className="flex items-center justify-between space-x-1 sm:space-x-2 hover:text-[#a78bfa] transition-colors"
                 onClick={(e) => e.stopPropagation()}
               >
-                <h2 className="text-l font-bold text-white">{authorName}</h2>
+                <h2 className="text-l font-bold text-gray-500">{authorName}</h2>
 
                 {createdAt && (
-                  <span className="text-xs text-gray-300 hidden xs:inline-block">
+                  <span className="text-xs text-gray-400 hidden xs:inline-block">
                     {formatDistanceToNow(createdAt, { addSuffix: true })}
                   </span>
                 )}
@@ -185,7 +183,12 @@ export default function MemeCard({
 
         <div className="p-3 sm:p-4 flex flex-col flex-grow">
           <div className="flex items-center justify-between mb-1 sm:mb-2">
-           
+          <h3
+            className="text-base sm:text-lg font-semibold text-gray-500 mb-3 cursor-pointer line-clamp-2"
+            onClick={openDetailModal}
+          >
+            {title}
+          </h3>
             {isOwner && (
               <motion.button
                 whileHover={{ scale: 1.1 }}
@@ -212,12 +215,7 @@ export default function MemeCard({
             )}
           </div>
 
-          <h3
-            className="text-base sm:text-lg font-semibold text-white mb-3 cursor-pointer line-clamp-2"
-            onClick={openDetailModal}
-          >
-            {title}
-          </h3>
+          
 
           <div className="flex items-center space-x-4 sm:space-x-6 mb-2">
             <motion.button
@@ -228,7 +226,7 @@ export default function MemeCard({
                 handleLike();
               }}
               className={`flex items-center space-x-1 sm:space-x-2 ${
-                isLiked ? "text-[#f472b6]" : "text-gray-300"
+                isLiked ? "text-[#f472b6]" : "text-gray-500"
               } hover:text-[#f472b6] transition-colors`}
             >
               <svg
@@ -256,7 +254,7 @@ export default function MemeCard({
                 e.stopPropagation();
                 openDetailModal();
               }}
-              className="flex items-center space-x-1 sm:space-x-2 text-gray-300 hover:text-[#a78bfa] transition-colors"
+              className="flex items-center space-x-1 sm:space-x-2 text-gray-500 hover:text-[#6b57a5] transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -281,17 +279,17 @@ export default function MemeCard({
           {/* Comment section with fixed height */}
           <div className="mt-auto pt-2">
             <div
-              className="mt-2 sm:mt-3 bg-[#171b23] p-2 rounded-lg cursor-pointer text-xs sm:text-sm min-h-[70px] flex flex-col justify-center"
+              className="mt-2 sm:mt-3 hover:bg-[#ededf0] border-1 border-[#8b5cf6]/40 p-2 rounded-lg cursor-pointer text-xs sm:text-sm min-h-[70px] flex flex-col justify-center"
               onClick={openDetailModal}
             >
               {localComments.length > 0 ? (
                 <>
                   <div className="flex items-center space-x-1 sm:space-x-2">
-                    <span className="font-medium text-[#a78bfa] truncate max-w-[100px] sm:max-w-[140px]">
+                    <span className="font-medium text-[#5049a2] truncate max-w-[100px] sm:max-w-[140px]">
                       {localComments[localComments.length - 1].userName}
                     </span>
                   </div>
-                  <p className="text-white mt-1 truncate">
+                  <p className="text-gray-500 mt-1 truncate">
                     {localComments[localComments.length - 1].text}
                   </p>
                   {localComments.length > 1 && (
