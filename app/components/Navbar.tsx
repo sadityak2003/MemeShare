@@ -24,8 +24,6 @@ export default function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const libraryMenuRef = useRef<HTMLDivElement>(null);
 
-  const imageURL =
-    "https://img.freepik.com/premium-vector/vector-colorful-logo-design_1002026-45.jpg";
 
   const handleSignIn = async () => {
     try {

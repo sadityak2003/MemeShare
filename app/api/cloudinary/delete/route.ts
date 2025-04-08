@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuth } from 'firebase-admin/auth';
 import { getApps, initializeApp, cert } from 'firebase-admin/app';
-import { getFirestore } from 'firebase-admin/firestore';
+// import { getFirestore } from 'firebase-admin/firestore';
 
 // Initialize Firebase Admin if not already initialized
 if (!getApps().length) {
@@ -32,9 +32,9 @@ if (!getApps().length) {
 }
 
 // Initialize Firestore only if Firebase is initialized
-let adminDb: any;
+// let adminDb: any;
 try {
-  adminDb = getFirestore();
+  // adminDb = getFirestore();
 } catch (error) {
   console.error('Failed to initialize Firestore:', error);
 }
@@ -54,7 +54,8 @@ export async function POST(request: NextRequest) {
     try {
       body = await request.json();
     } catch (error) {
-      return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+      // return NextResponse.json({ console.log("error:"error)  }, { status: 400 });
+      console.log('Error parsing JSON:', error);
     }
     
     const { publicId } = body;
@@ -84,7 +85,7 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    const uid = decodedToken.uid;
+    // const uid = decodedToken.uid;
 
     // Cloudinary API for deletion
     const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
