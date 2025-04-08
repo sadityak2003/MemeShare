@@ -49,7 +49,7 @@ export default function TrendingPage() {
   };
 
   // Handler for meme deletion
-  const handleMemeDelete = (deletedId: string) => {
+  const handleMemeDelete = (deletedId: any) => {
     setTrendingMemes((currentMemes) => 
       currentMemes.filter((meme) => meme.id !== deletedId)
     );
