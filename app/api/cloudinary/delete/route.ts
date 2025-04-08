@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuth } from 'firebase-admin/auth';
 import { getApps, initializeApp, cert } from 'firebase-admin/app';
+import crypto from 'crypto'
 // import { getFirestore } from 'firebase-admin/firestore';
 
 // Initialize Firebase Admin if not already initialized
@@ -108,7 +109,7 @@ export async function POST(request: NextRequest) {
     formData.append('timestamp', timestamp.toString());
     
     // Generate signature
-    const crypto = require('crypto');
+    // const crypto = require('crypto');
     const signature = crypto.createHash('sha1').update(`public_id=${publicId}&timestamp=${timestamp}${apiSecret}`).digest('hex');
     formData.append('signature', signature);
 
