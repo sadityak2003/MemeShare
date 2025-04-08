@@ -26,7 +26,7 @@ interface Meme {
   createdAt: number;
 }
 
-export default function ExplorePage() {
+export default function Home() {
   const { user } = useAuth();
   const [memes, setMemes] = useState<Meme[]>([]);
   const [loading, setLoading] = useState(true);
