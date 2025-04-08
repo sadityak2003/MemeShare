@@ -32,7 +32,7 @@ export default function RootLayout({
                 color: "var(--color-text-primary)",
                 border: "1px solid var(--color-primary-light)",
               },
-              duration: 3000,
+              duration: 3002,
             }}
           />
         </AuthProvider>
